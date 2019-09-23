@@ -65,8 +65,7 @@
     "start": "nodemon server",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint ./src --fix",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "lint": "eslint ./src --fix"
   },
   "eslintConfig": {
     "extends": "airbnb"
