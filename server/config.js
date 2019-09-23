@@ -6,7 +6,7 @@ const DEFAULT_PORT = 3001;
 
 const env = process.env.NODE_ENV;
 const { DB } = process.env;
-const frontenHost = process.env.FRONTEND_HOST;
+const frontendHost = process.env.FRONTEND_HOST;
 const frontendResetPasswordUrl = process.env.FRONTEND_RESET_PASSWORD_URL;
 
 const smtpHost = process.env.SMTP_HOST;
@@ -25,7 +25,7 @@ module.exports = {
   env,
   isDev,
   port: process.env.PORT || DEFAULT_PORT,
-  frontenHost,
+  frontendHost,
   frontendResetPasswordUrl,
   smtpHost,
   smtpService,
