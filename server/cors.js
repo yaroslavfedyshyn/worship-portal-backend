@@ -3,7 +3,10 @@ const config = require('./config');
 const productionOptions = {
   origin(origin, callback) {
     if (config.whiteListOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
+      callback(null, {
+        origin: true,
+        credentials: true,
+      });
     } else {
       callback(new Error('Not allowed by CORS'));
     }
