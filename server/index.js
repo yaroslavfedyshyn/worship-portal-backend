@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', 'https://worship-portal-frontend-stage.herokuapp.com');
   res.append('Access-Control-Allow-Credentials', 'true');
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.append('Access-Control-Allow-Headers', 'Content-Type');
+  res.append('Access-Control-Allow-Headers', 'Content-Type, *');
   next();
 });
 
