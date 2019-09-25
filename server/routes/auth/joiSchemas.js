@@ -5,7 +5,7 @@ const registerSchema = Joi.object({
   lastName: Joi.string().min(2).max(30).required(),
   password: Joi.string().min(6).max(30).regex(/[a-zA-Z0-9]{6,30}/)
     .required(),
-  email: Joi.string().email().required(),
+  email: Joi.string().email().required()
 });
 
 const loginSchema = Joi.object({
@@ -19,9 +19,14 @@ const forgotPasswordSchema = Joi.object({
 });
 
 const resetPasswordSchema = Joi.object({
-  password: Joi.string().min(6).max(30).regex(/[a-zA-Z0-9]{6,30}/)
+  password: Joi.string()
+      .min(6)
+      .max(30).regex(/[a-zA-Z0-9]{6,30}/)
     .required(),
-  token: Joi.string().min(30).max(30).regex(/[a-zA-Z0-9]{30,30}/)
+
+  token: Joi.string()
+      .min(30)
+      .max(30).regex(/[a-zA-Z0-9]{30,30}/)
     .required(),
 });
 
