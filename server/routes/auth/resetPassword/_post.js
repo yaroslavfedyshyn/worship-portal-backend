@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
 
     userActions.remove();
 
-    const user = await User.findOne({_id: userActions.userId});
+    const user = await User.findById(userActions.userId);
     user.password = req.body.password;
     await user.save();
 
