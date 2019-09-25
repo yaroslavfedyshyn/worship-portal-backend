@@ -4,8 +4,7 @@ module.exports = {
     'node': true,
     'es6': true
   },
-  'extends': ['airbnb', 'airbnb/hooks'],
-  'parser': 'babel-eslint',
+  'extends': ['airbnb'],
   'globals': {
     'Atomics': 'readonly',
     'SharedArrayBuffer': 'readonly'
@@ -18,7 +17,7 @@ module.exports = {
     'sourceType': 'module'
   },
   'plugins': [
-    'node/recomented',
+    'node',
   ],
   'rules': {
     // 'react/prop-types': 0,

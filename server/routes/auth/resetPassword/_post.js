@@ -1,5 +1,7 @@
 const moment = require('moment');
 
+
+const User = require('../../../models/user');
 const UserActions = require('../../../models/userActions');
 
 module.exports = async (req, res, next) => {
@@ -8,20 +10,22 @@ module.exports = async (req, res, next) => {
 
     if (!userActions) {
       res.status(404);
-      res.send('Not found');
-      return next('Not found');
+      return res.send('Not found');
     }
 
     if (userActions && userActions.expiresAt < Date.now()) {
       res.status(403);
-      res.send('Token is overdue');
-      return next('Token is overdue');
+      return res.send('Token is overdue');
     }
 
     userActions.remove();
 
+    const user = await User.findOne({_id: userActions.userId});
+    user.password = req.body.password;
+    await user.save();
+
     res.status(200);
-    res.send('ok');
+    res.json({ok: 1});
   } catch (error) {
     next(error);
   }
