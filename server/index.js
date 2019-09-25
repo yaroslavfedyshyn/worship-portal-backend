@@ -14,7 +14,7 @@ const parseErrors = require('./utils/parseErrors');
 const app = express();
 
 app.use((req, res, next) => {
-  res.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.append('Access-Control-Allow-Origin', [ 'http://localhost:3000','http://worship-portal.tk/']);
   res.append('Access-Control-Allow-Credentials', 'true');
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.append('Access-Control-Allow-Headers', 'Content-Type, *');
