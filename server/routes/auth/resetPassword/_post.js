@@ -21,11 +21,16 @@ module.exports = async (req, res, next) => {
     userActions.remove();
 
     const user = await User.findById(userActions.userId);
-    user.password = req.body.password;
-    await user.save();
+    if (user) {
+      user.password = req.body.password;
+      await user.save();
 
-    res.status(200);
-    res.json({ok: 1});
+      res.status(200);
+      res.json({ok: 1});
+    } else {
+      next({error: 1})
+    }
+
   } catch (error) {
     next(error);
   }
