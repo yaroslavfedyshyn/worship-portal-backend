@@ -1,4 +1,6 @@
 const User = require('../../../models/user');
+const sendEmail = require('../../../utils/nodeEmailer');
+const {WELCOME_EMAIL_CONTENT} = require("../../../constants");
 
 module.exports = async (req, res, next) => {
     const {
@@ -8,34 +10,36 @@ module.exports = async (req, res, next) => {
         password,
     } = req.body;
 
-    try {
+    const sameEmail = await User.findOne({email});
 
-        const sameEmail = await User.findOne({email});
-
-        if (sameEmail) {
-          res.status(422);
-            res.json({
-                message: 'this email is already taken',
-                details: [
-                  {
+    if (sameEmail) {
+        res.status(422);
+        res.json({
+            message: 'this email is already taken',
+            details: [
+                {
                     path: ['email'],
                     type: 'not.unique',
                     message: 'this email is already taken'
-                  }
-                ]
-            })
-        }
+                }
+            ]
+        })
+    }
 
-        const user = new User({
-            firstName,
-            lastName,
-            email,
-            password,
-        });
+    const user = new User({
+        firstName,
+        lastName,
+        email,
+        password,
+    });
 
-        const result = await user.save();
-        res.send(result);
-    } catch (error) {
-        next(error); // ?
+    const userIsSaved = await user.save();
+
+    if (userIsSaved) {
+        const mailContent = `Hello ${firstName}. ${WELCOME_EMAIL_CONTENT}`;
+
+        sendEmail(email, 'Welcome to Worship Portal', mailContent);
+
+        res.send(userIsSaved);
     }
 };

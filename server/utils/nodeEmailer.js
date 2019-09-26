@@ -16,7 +16,7 @@ const transport = nodemailer.createTransport({
 
 async function sendEmail(email, subject, content) {
   const message = {
-    from: 'worship-rock@gmail.com', // Sender address
+    from: 'worship.portal.info@gmail.com', // Sender address
     to: email, // List of recipients
     subject, // Subject line
     text: content, // Plain text body
