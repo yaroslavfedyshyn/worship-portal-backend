@@ -9,6 +9,7 @@ const { DB } = process.env;
 const frontendHost = process.env.FRONTEND_HOST;
 const frontendResetPasswordUrl = process.env.FRONTEND_RESET_PASSWORD_URL;
 
+const smtpEmailFrom = process.env.SMTP_EMAIL_FROM;
 const smtpHost = process.env.SMTP_HOST;
 const smtpService = process.env.SMTP_SERVICE;
 const smtpPort = process.env.SMTP_PORT;
@@ -27,6 +28,7 @@ module.exports = {
   port: process.env.PORT || DEFAULT_PORT,
   frontendHost,
   frontendResetPasswordUrl,
+  smtpEmailFrom,
   smtpHost,
   smtpService,
   smtpPort,

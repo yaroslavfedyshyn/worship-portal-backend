@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 
 const {
+  smtpEmailFrom,
   smtpService,
   smtpUser,
   smtpPassword,
@@ -16,7 +17,7 @@ const transport = nodemailer.createTransport({
 
 async function sendEmail(email, subject, content) {
   const message = {
-    from: 'worship.portal.info@gmail.com', // Sender address
+    from: smtpEmailFrom, // Sender address
     to: email, // List of recipients
     subject, // Subject line
     text: content, // Plain text body
