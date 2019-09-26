@@ -32,13 +32,13 @@ module.exports = async (req, res, next) => {
         password,
     });
 
-    const userIsSaved = await user.save();
+    const savedUser = await user.save();
 
-    if (userIsSaved) {
+    if (savedUser) {
         const mailContent = `Hello ${firstName}. ${WELCOME_EMAIL_CONTENT}`;
 
         sendEmail(email, 'Welcome to Worship Portal', mailContent);
 
-        res.send(userIsSaved);
+        res.json(savedUser);
     }
 };
