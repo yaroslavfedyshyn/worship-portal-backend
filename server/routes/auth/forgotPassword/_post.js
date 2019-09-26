@@ -11,7 +11,6 @@ module.exports = async (req, res, next) => {
         email,
     } = req.body;
 
-    try {
         const user = await User.findOne({email});
 
         if (user) {
@@ -27,7 +26,4 @@ module.exports = async (req, res, next) => {
             sendEmail(email, 'Reset password link', link);
         }
         res.status(200).json({ok: true});
-    } catch (error) {
-        next(error);
-    }
 };
