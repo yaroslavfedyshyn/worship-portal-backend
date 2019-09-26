@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
     const sameEmail = await User.findOne({email});
 
     if (sameEmail) {
-       return res.status(422).json({
+        return res.status(422).json({
             message: 'this email is already taken',
             details: [
                 {
@@ -38,7 +38,7 @@ module.exports = async (req, res, next) => {
         const mailContent = `Hello ${firstName}. ${WELCOME_EMAIL_CONTENT}`;
 
         sendEmail(email, 'Welcome to Worship Portal', mailContent);
-
-        res.json(savedUser);
     }
+
+    res.json(savedUser);
 };
