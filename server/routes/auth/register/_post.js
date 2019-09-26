@@ -13,8 +13,7 @@ module.exports = async (req, res, next) => {
     const sameEmail = await User.findOne({email});
 
     if (sameEmail) {
-        res.status(422);
-        res.json({
+       return res.status(422).json({
             message: 'this email is already taken',
             details: [
                 {
