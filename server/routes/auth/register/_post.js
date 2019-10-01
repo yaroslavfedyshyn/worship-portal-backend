@@ -1,8 +1,9 @@
 const User = require('../../../models/user');
-const sendEmail = require('../../../utils/nodeEmailer');
+const sendEmail = require('../../../utils/emailer/nodeEmailer');
 const {WELCOME_EMAIL_CONTENT} = require("../../../constants");
 
 module.exports = async (req, res, next) => {
+
     const {
         firstName,
         lastName,

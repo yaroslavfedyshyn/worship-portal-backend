@@ -16,16 +16,16 @@ const {
 
 const router = Router();
 router.route('/register')
-  .post(validate(registerSchema), register);
+  .post(...validate(registerSchema), register);
 
 router.route('/login')
-  .post(validate(loginSchema), login);
+  .post(validate(...validate(loginSchema)), login);
 
 router.route('/password/forgot')
-  .post(validate(forgotPasswordSchema), forgotPassword);
+  .post(validate(...validate(forgotPasswordSchema)), forgotPassword);
 
 router.route('/password/reset')
-  .post(validate(resetPasswordSchema), resetPassword);
+  .post(validate(...validate(resetPasswordSchema)), resetPassword);
 
 router.use(isAuthorized);
 router.route('/profile')

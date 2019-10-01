@@ -1,13 +1,11 @@
 module.exports = (err, req, res, next) => {
-  const {
-    status,
-    details,
-    message,
-  } = err;
+    if (err && err.error && err.error.isJoi) {
 
-  res.status(status || 500).json({
-    code: status,
-    message,
-    details,
-  });
+        res.status(422).json({
+            message: err.error.message,
+            details: err.error.details
+        })
+    } else {
+        next(err);
+    }
 };
