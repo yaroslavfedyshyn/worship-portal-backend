@@ -5,7 +5,7 @@ const {
   smtpService,
   smtpUser,
   smtpPassword,
-} = require('../config');
+} = require('../../config');
 
 const transport = nodemailer.createTransport({
   service: smtpService,

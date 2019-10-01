@@ -1,7 +1,25 @@
-module.exports = (joiSchema) => function (req, res, next) {
-  const data = { ...req.body, ...req.query, ...req.param };
+const validator = require('express-joi-validation').createValidator({
+  passError: true
+});
 
-  const { error } = joiSchema.validate(data);
+module.exports = (joiSchema, options = {}) => {
+  const joiOptions = {
+    abortEarly: false,
+    ...options,
+  };
+  const result = [];
 
-  error ? next(error) : next();
+  if (joiSchema.body) {
+     result.push(validator.body(joiSchema.body, {joi: joiOptions}))
+  }
+
+  if (joiSchema.query) {
+    result.push(validator.query(joiSchema.query, {joi: joiOptions}))
+  }
+
+  if (joiSchema.params) {
+    result.push(validator.params(joiSchema.params, {joi: joiOptions}))
+  }
+
+  return result;
 };

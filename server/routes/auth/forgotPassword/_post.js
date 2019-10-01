@@ -4,7 +4,7 @@ const UserActions = require('../../../models/userActions');
 const User = require('../../../models/user');
 const tokenGenerate = require('../../../utils/generateString');
 const {GENERATE_RESET_PASSWORD_TOKEN_LENGTH} = require('../../../constants');
-const sendEmail = require('../../../utils/nodeEmailer');
+const sendEmail = require('../../../utils/emailer/nodeEmailer');
 
 module.exports = async (req, res, next) => {
     const {
