@@ -16,8 +16,8 @@ module.exports = async (req, res, next) => {
       const errData = {
         path:   ['email'],
         type: 'not.found',
-        message: 'invalid username or password',
-        transKey: 'server.something.wrong'
+        message: 'invalid email or password',
+        transKey: 'server.error.user.not.found'
       };
 
       return res.status(422)
@@ -26,7 +26,19 @@ module.exports = async (req, res, next) => {
 
       user.comparePassword(password, async (err, isMatch) => {
         if (err) throw err;
-        if (isMatch) {
+        if(!isMatch) {
+          const errData = {
+            path:   ['email'],
+            type: 'not.found',
+            message: 'invalid email or password',
+            transKey: 'server.error.user.not.found'
+          };
+
+          return res.status(422)
+              .json(createError(errData))
+
+        }
+
           const session = new Session({
             token: tokenGenerate(GENERATE_SESSION_TOKEN_LENGTH),
             userId: user._id,
@@ -36,6 +48,5 @@ module.exports = async (req, res, next) => {
 
           res.cookie('sessionToken', session.token, { maxAge: 900000, httpOnly: true })
               .json(user);
-        }
       });
 };
