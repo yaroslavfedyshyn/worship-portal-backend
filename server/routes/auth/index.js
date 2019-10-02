@@ -19,13 +19,13 @@ router.route('/register')
   .post(...validate(registerSchema), register);
 
 router.route('/login')
-  .post(validate(...validate(loginSchema)), login);
+  .post(...validate(loginSchema), login);
 
 router.route('/password/forgot')
-  .post(validate(...validate(forgotPasswordSchema)), forgotPassword);
+  .post(...validate(forgotPasswordSchema), forgotPassword);
 
 router.route('/password/reset')
-  .post(validate(...validate(resetPasswordSchema)), resetPassword);
+  .post(...validate(resetPasswordSchema), resetPassword);
 
 router.use(isAuthorized);
 router.route('/profile')
