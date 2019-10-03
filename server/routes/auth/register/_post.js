@@ -16,6 +16,7 @@ module.exports = async (req, res, next) => {
 
     if (sameEmail) {
         const errData = {
+            generalMessage: 'email isn`t unique',
             path:   ['email'],
             type: 'not.unique',
             message: 'this email is already taken'

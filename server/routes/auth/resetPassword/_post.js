@@ -8,10 +8,8 @@ module.exports = async (req, res, next) => {
     const userActions = await UserActions.findOne({token: req.body.token});
 
     const errData = {
-        path:   ['password'],
-        type: 'not.found',
-        message: 'not found',
-        transKey: 'server.something.wrong'
+        generalMessage: 'not found',
+        transKey: 'server.error.something.wrong'
     };
 
 

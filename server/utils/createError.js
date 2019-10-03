@@ -1,14 +1,16 @@
-const createError = ({ message, transKey, path, type}) => {
-    return {
-        message,
-        transKey,
-        details: [
-            {
-                path,
-                type,
-                message
-            }
-        ]
+const createError = ({generalMessage, transKey, ...options}) => {
+
+    if (Object.keys(options).length) {
+        return {
+            message: generalMessage,
+            transKey,
+            details: [options]
+        }
+    } else {
+        return {
+            message: generalMessage,
+            transKey,
+        }
     }
 };
 
