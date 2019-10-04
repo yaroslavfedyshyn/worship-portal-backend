@@ -1,6 +1,6 @@
 const createError = ({generalMessage, transKey, ...options}) => {
 
-    if (Object.keys(options).length) {
+    if (details) {
         return {
             message: generalMessage,
             transKey,
