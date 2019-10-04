@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
         path:   ['email'],
         type: 'not.found',
         message: 'invalid email or password',
-        transKey: 'server.error.user.not.found'
+        transKey: 'server.error.invalid.email.or.password'
       };
 
       return res.status(422)
@@ -31,7 +31,7 @@ module.exports = async (req, res, next) => {
             path:   ['email'],
             type: 'not.found',
             message: 'invalid email or password',
-            transKey: 'server.error.user.not.found'
+            transKey: 'server.error.invalid.email.or.password'
           };
 
           return res.status(422)

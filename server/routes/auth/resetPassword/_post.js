@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
 
     const errData = {
         generalMessage: 'not found',
-        transKey: 'server.error.something.wrong'
+        transKey: 'Something went wrong'
     };
 
 
