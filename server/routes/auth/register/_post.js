@@ -36,9 +36,13 @@ module.exports = async (req, res, next) => {
     const savedUser = await user.save();
 
     if (savedUser) {
-        const mailContent = `Hello ${firstName}. ${WELCOME_EMAIL_CONTENT}`;
+        const mailContext = {
+            firstName,
+            lastName,
+            WELCOME_EMAIL_CONTENT
+        };
 
-        sendEmail(email, 'Welcome to Worship Portal', mailContent);
+        sendEmail(email, 'Welcome to Worship Portal', '', mailContext);
     }
 
     res.json(savedUser);

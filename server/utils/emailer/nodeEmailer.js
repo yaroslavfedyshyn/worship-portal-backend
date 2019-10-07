@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars');
 
 const {
   smtpEmailFrom,
@@ -6,6 +7,20 @@ const {
   smtpUser,
   smtpPassword,
 } = require('../../config');
+
+
+const options = {
+  viewEngine: {
+    extname: '.hbs',
+    layoutsDir: `${__dirname}/views/email/`,
+    defaultLayout : '',
+    partialsDir : `${__dirname}/views/partials/`
+  },
+  viewPath: `${__dirname}/views/email/`,
+  extName: '.hbs'
+};
+
+
 
 const transport = nodemailer.createTransport({
   service: smtpService,
@@ -15,12 +30,16 @@ const transport = nodemailer.createTransport({
   },
 });
 
-async function sendEmail(email, subject, content) {
+transport.use('compile', hbs(options));
+
+async function sendEmail(to, subject, templater, context) {
+
   const message = {
     from: smtpEmailFrom, // Sender address
-    to: email, // List of recipients
+    to, // List of recipients
     subject, // Subject line
-    text: content, // Plain text body
+    template: templater || 'welcome',
+    context: {...context}
   };
 
   await transport.sendMail(message, (err, info) => {
@@ -28,6 +47,7 @@ async function sendEmail(email, subject, content) {
       console.log(err);
     } else {
       console.log(info);
+      transport.close();
     }
   });
 }
