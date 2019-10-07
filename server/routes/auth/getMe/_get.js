@@ -1,7 +1,7 @@
 module.exports = async (req, res, next) => {
   try {
-    res.send(req.user);
+    res.json(req.user);
   } catch (error) {
-    next(error);
+    res.json({ok: 0});
   }
 };
