@@ -14,8 +14,6 @@ module.exports = async (req, res, next) => {
 
     if (!user) {
       const errData = {
-        path:   ['email'],
-        type: 'not.found',
         message: 'invalid email or password',
         transKey: 'server.error.invalid.email.or.password'
       };
@@ -28,8 +26,6 @@ module.exports = async (req, res, next) => {
         if (err) throw err;
         if(!isMatch) {
           const errData = {
-            path:   ['email'],
-            type: 'not.found',
             message: 'invalid email or password',
             transKey: 'server.error.invalid.email.or.password'
           };
