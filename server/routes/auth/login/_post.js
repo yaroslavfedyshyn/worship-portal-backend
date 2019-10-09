@@ -14,8 +14,8 @@ module.exports = async (req, res, next) => {
 
     if (!user) {
         const errData = {
-            generalMessage: 'not found',
-            transKey: 'server.error.user.not.found'
+            generalMessage: 'invalid email or password',
+            transKey: 'server.error.invalid.email.or.password'
         };
 
         return res.status(422)
@@ -26,8 +26,8 @@ module.exports = async (req, res, next) => {
 
         if (!isMatch) {
             const errData = {
-                generalMessage: 'not found',
-                transKey: 'server.error.user.not.found'
+                generalMessage: 'invalid email or password',
+                transKey: 'server.error.invalid.email.or.password'
             };
 
 
@@ -43,5 +43,7 @@ module.exports = async (req, res, next) => {
 
         await session.save();
 
-        res.cookie('sessionToken', session.token, {maxAge: 900000, httpOnly: true}).status(200).json(user);
+        res.cookie('sessionToken', session.token, {maxAge: 900000, httpOnly: true})
+            .status(200)
+            .json(user);
 };
