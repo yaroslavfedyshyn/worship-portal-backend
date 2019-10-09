@@ -39,7 +39,7 @@ async function sendEmail(to, subject, templater, context) {
     to, // List of recipients
     subject, // Subject line
     template: templater || 'welcome',
-    context: {...context}
+    context
   };
 
   await transport.sendMail(message, (err, info) => {
