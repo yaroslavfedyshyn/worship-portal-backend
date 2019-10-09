@@ -53,11 +53,8 @@ userSchema.set('toJSON', {
   },
 });
 
-userSchema.methods.comparePassword = function (candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-    if (err) return cb(err);
-    cb(null, isMatch);
-  });
+userSchema.methods.comparePassword = async function (candidatePassword) {
+  return  await bcrypt.compare(candidatePassword, this.password);
 };
 
 const User = model('User', userSchema);

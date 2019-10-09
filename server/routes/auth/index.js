@@ -6,8 +6,8 @@ const getMe = require('./getMe/_get');
 const forgotPassword = require('./forgotPassword/_post');
 const resetPassword = require('./resetPassword/_post');
 const logout = require('./logout/_post');
-const isAuthorized = require('../auth/isAuthorized');
-const validate = require('./schemaValidate');
+const isAuthorized = require('../isAuthorized');
+const validate = require('../schemaValidate');
 const {
   registerSchema,
   loginSchema,

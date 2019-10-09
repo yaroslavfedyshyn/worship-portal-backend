@@ -33,6 +33,8 @@ module.exports = async (req, res, next) => {
         password,
     });
 
+    console.log(password)
+
     const savedUser = await user.save();
 
     if (savedUser) {

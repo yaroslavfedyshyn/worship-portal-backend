@@ -1,16 +1,9 @@
-const createError = ({generalMessage, transKey, ...options}) => {
+const createError = ({generalMessage, transKey, details}) => {
 
-    if (details) {
-        return {
-            message: generalMessage,
-            transKey,
-            details: [options]
-        }
-    } else {
-        return {
-            message: generalMessage,
-            transKey,
-        }
+    return {
+        message: generalMessage,
+        transKey,
+        details
     }
 };
 

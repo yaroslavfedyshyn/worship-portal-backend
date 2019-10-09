@@ -22,8 +22,8 @@ module.exports = async (req, res, next) => {
             .json(createError(errData))
     }
 
-    user.comparePassword(password, async (err, isMatch) => {
-        if (err) throw err;
+    const isMatch = await user.comparePassword(password);
+
         if (!isMatch) {
             const errData = {
                 generalMessage: 'not found',
@@ -43,7 +43,5 @@ module.exports = async (req, res, next) => {
 
         await session.save();
 
-        res.cookie('sessionToken', session.token, {maxAge: 900000, httpOnly: true})
-            .json(user);
-    });
+        res.cookie('sessionToken', session.token, {maxAge: 900000, httpOnly: true}).status(200).json(user);
 };
