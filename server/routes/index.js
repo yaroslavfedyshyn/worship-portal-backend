@@ -7,8 +7,7 @@ const router = Router();
 
 router.use('/auth', authRoutes);
 
-router.use('/profile', profileRoutes);
-
 router.use(isAuthorized);
+router.use('/profile', profileRoutes);
 
 module.exports = router;
