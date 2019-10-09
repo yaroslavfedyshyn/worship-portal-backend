@@ -1,10 +1,10 @@
-const createError = ({generalMessage, transKey, ...options}) => {
+const createError = ({generalMessage, transKey, details}) => {
 
     if (Object.keys(options).length) {
         return {
             message: generalMessage,
             transKey,
-            details: [options]
+            details
         }
     } else {
         return {
