@@ -8,7 +8,7 @@ const db = require('./db');
 const corsOptions = require('./cors');
 const config = require('./config');
 const routes = require('./routes');
-const isAuthorized = require('./routes/auth/isAuthorized');
+const isAuthorized = require('./routes/isAuthorized');
 const parseErrors = require('./utils/parseErrors');
 
 const app = express();
