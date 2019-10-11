@@ -1,7 +1,7 @@
 const Session = require('../../../models/session');
 const User = require('../../../models/user');
 const tokenGenerate = require('../../../utils/generateString');
-const {GENERATE_SESSION_TOKEN_LENGTH} = require('../../../constants');
+const {GENERATE_SESSION_TOKEN_LENGTH, SESSION_TOKEN_MAX_AGE} = require('../../../constants');
 const createError = require('../../../utils/createError');
 
 module.exports = async (req, res, next) => {
@@ -43,7 +43,7 @@ module.exports = async (req, res, next) => {
 
         await session.save();
 
-        res.cookie('sessionToken', session.token, {maxAge: 900000, httpOnly: true})
+        res.cookie('sessionToken', session.token, {maxAge: SESSION_TOKEN_MAX_AGE, httpOnly: true})
             .status(200)
             .json(user);
 };

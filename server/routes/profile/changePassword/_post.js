@@ -1,12 +1,10 @@
-const User = require('../../../models/user');
 const createError = require('../../../utils/createError');
 
-module.exports = async (req, res, next) => {
+module.exports = async ({body, user}, res, next) => {
     const {
-        user,
         currentPassword,
         password
-    } = req.body;
+    } = body;
 
     const errData = {
         generalMessage: 'not found',
