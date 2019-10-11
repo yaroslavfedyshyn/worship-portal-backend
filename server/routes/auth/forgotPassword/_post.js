@@ -23,7 +23,7 @@ module.exports = async (req, res, next) => {
             await userActions.save();
 
             const link = `${process.env.FRONTEND_HOST}${process.env.FRONTEND_RESET_PASSWORD_URL}?token=${userActions.token}`;
-            sendEmail(email, 'Reset password link', link);
+            sendEmail(email, 'Reset password link','forgotPassword', {link});
         }
         res.status(200).json({ok: true});
 };
